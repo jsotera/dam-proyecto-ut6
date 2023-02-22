@@ -14,7 +14,7 @@ public class Comida extends Objeto
     private static final String RUTA_SPRITE = "Recursos/GIF/items/cherry.gif";
     private static final String RUTA_SONIDO_COMIDA = "Recursos/Audio/comida.wav";
     private static final int LADO_DEL_SPRITE = 21;
-    private static final int VALOR_EN_PUNTOS = 50;
+    public static final int VALOR_EN_PUNTOS = 50;
     
     public Comida(float anchoDeLaEscena, float altoDeLaEscena, int distanciaAlSuelo)
     {
