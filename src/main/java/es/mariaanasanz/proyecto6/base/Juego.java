@@ -1,5 +1,6 @@
 package es.mariaanasanz.proyecto6.base;
 
+import es.mariaanasanz.proyecto6.ejercicios.Estadisticas;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -66,6 +67,12 @@ public class Juego extends Application {
     }
 
     @Override
+    public void stop() throws Exception {
+        Estadisticas.mostrarEstadisticasSeguro();
+        System.exit(0);
+    }
+
+    @Override
     public void start(Stage primaryStage){
         // Creacion y configuraciono de la escena y el escenario:
         Pane panel = new Pane();
@@ -103,11 +110,17 @@ public class Juego extends Application {
                 }
                 // Cierra la ventana del juego y detiene la maquina virtual de java
                 if(event.getCode() == KeyCode.ESCAPE){
-                    System.exit(0);
+                    Estadisticas.capturarEventoTecladoSeguro(event.getCode());
+                    try {
+                        stop();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             });
 
         escena.setOnKeyReleased(event ->{
+                Estadisticas.capturarEventoTecladoSeguro(event.getCode());
                 if(event.getCode() == KeyCode.RIGHT || event.getCode() == KeyCode.LEFT){
                     jugador.detenerMovimiento();
                 }
@@ -121,6 +134,7 @@ public class Juego extends Application {
                 disparo.setCenterX(event.getX()+CORRECCION_DISPARO);
                 disparo.setCenterY(event.getY()+CORRECCION_DISPARO);
                 new MediaPlayer(sonidoDisparo).play();
+                Estadisticas.capturarDisparo(false);
             });
 
         // Creacion del timeline y el keyFrame
@@ -130,10 +144,14 @@ public class Juego extends Application {
         KeyFrame kf = new KeyFrame(Duration.millis(MILISEGUNDOS_DEL_KEYFRAME), (event) -> {
                     // Iteramos sobre los enemigos.
                     Iterator<Enemigo> iteradorEnemigos = enemigos.iterator();
+                    boolean disparoCertero = false;
                     while(iteradorEnemigos.hasNext()){
                         Enemigo enemigo = iteradorEnemigos.next();
                         enemigo.actualizar();
                         if(enemigo.getVida() && enemigo.disparadoPor(disparo)){
+                            Estadisticas.borrarDisparo(false);
+                            Estadisticas.capturarDisparo(true);
+                            disparoCertero = true;
                             Gema gema = new Gema(ANCHO_DE_LA_ESCENA, ALTO_DE_LA_ESCENA, DISTANCIA_AL_SUELO);
                             gema.fijarPosicion(enemigo.getX()+enemigo.getBoundsInParent().getWidth()/2, enemigo.getY()+enemigo.getBoundsInParent().getWidth()/2);
                             objetos.add(gema);
@@ -152,6 +170,7 @@ public class Juego extends Application {
                         Objeto objeto = iteradorObjetos.next();
                         objeto.actualizar();
                         if(objeto.recogidoPor(jugador)){
+                            Estadisticas.objetoRecogidoSeguro("jugador", objeto.getPuntos()==Comida.VALOR_EN_PUNTOS?"comida":"gema");
                             puntuacion += objeto.getPuntos();
                             panel.getChildren().remove(objeto);
                             iteradorObjetos.remove();
@@ -160,6 +179,7 @@ public class Juego extends Application {
                             iteradorObjetos.remove();
                             panel.getChildren().remove(objeto);
                         }else if(zarigueya.robar(objeto)){
+                            Estadisticas.objetoRecogidoSeguro("zarigueya", objeto.getPuntos()==Comida.VALOR_EN_PUNTOS?"comida":"gema");
                             panel.getChildren().remove(objeto);
                             iteradorObjetos.remove();
                             puntuacion -= objeto.getPuntos();
