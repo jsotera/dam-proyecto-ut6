@@ -53,7 +53,7 @@ public class Zarigueya extends Entidad
             valorDeRetorno = true;
             objeto.setImage(null);
             try{
-                new MediaPlayer(sonido).play();
+                //new MediaPlayer(sonido).play();
             }catch(Exception e){
                 e.printStackTrace();
             }

@@ -34,7 +34,7 @@ public class Comida extends Objeto
         try {
             spriteIdle = new Image(Files.newInputStream(Path.of(RUTA_SPRITE)));
             sonido = new Media(new File(RUTA_SONIDO_COMIDA).toURI().toString());
-            reproductorSonido = new MediaPlayer(sonido);
+            //reproductorSonido = new MediaPlayer(sonido);
         } catch (Exception e) {
             System.out.println("ALGO NO HA IDO BIEN");
             e.printStackTrace();

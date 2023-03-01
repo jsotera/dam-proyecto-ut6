@@ -76,7 +76,7 @@ public class Enemigo extends Entidad
             disparado = true;
             try{
                 spriteMuerte = new Image(Files.newInputStream(Path.of(RUTA_SPRITE_MUERTE)));
-                reproductorSonido.play();
+                //reproductorSonido.play();
             }catch(Exception e){
                 e.printStackTrace();
             }

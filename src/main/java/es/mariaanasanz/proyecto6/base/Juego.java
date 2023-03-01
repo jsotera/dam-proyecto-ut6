@@ -133,7 +133,7 @@ public class Juego extends Application {
         escena.setOnMouseClicked((MouseEvent event) -> {
                 disparo.setCenterX(event.getX()+CORRECCION_DISPARO);
                 disparo.setCenterY(event.getY()+CORRECCION_DISPARO);
-                new MediaPlayer(sonidoDisparo).play();
+                //new MediaPlayer(sonidoDisparo).play();
                 Estadisticas.capturarDisparo(false);
             });
 
@@ -247,7 +247,7 @@ public class Juego extends Application {
         // Inicamos lo que respecta a musica y efectos sonoros.
         reproductorMusicaAmbiente = new MediaPlayer(musicaAmbiente);
         reproductorMusicaAmbiente.setCycleCount(MediaPlayer.INDEFINITE);
-        reproductorMusicaAmbiente.play();
+        //reproductorMusicaAmbiente.play();
 
         primaryStage.show();
     }

@@ -44,7 +44,7 @@ public abstract class Objeto extends Entidad
         if(this.intersects(jugador.getBoundsInParent())){
             recogido = true;
             setImage(null);
-            reproductorSonido.play();
+            //reproductorSonido.play();
         }
         return recogido;
     }
