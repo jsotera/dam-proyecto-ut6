@@ -12,8 +12,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+/*
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+*/
 import javafx.scene.shape.Circle;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
@@ -57,9 +59,11 @@ public class Juego extends Application {
     private ArrayList<Objeto> objetos;
     private int contadorMilisegundos, puntuacion;
     private long contadorSegundos;
+    /*;
     private Media musicaAmbiente;
     private Media sonidoDisparo;
     private MediaPlayer reproductorMusicaAmbiente;
+    */
     private Zarigueya zarigueya;
     
     public static void main(String[] args){
@@ -236,19 +240,21 @@ public class Juego extends Application {
             BACKGROUND.setImage(new Image(Files.newInputStream(Path.of(RUTA_IMAGEN_BACKGROUND))));
             iconoVentana = new Image(Files.newInputStream(Path.of(RUTA_ICONO_VENTANA)));
             panel.setCursor(new ImageCursor(new Image(Files.newInputStream(Path.of(RUTA_IMAGEN_CURSOR)))));
+            /*
             musicaAmbiente = new Media(new File(RUTA_MUSICA_AMBIENTE).toURI().toString());
             sonidoDisparo = new Media(new File(RUTA_SONIDO_DISPARO).toURI().toString());
-            
+            */
             primaryStage.getIcons().add(iconoVentana); 
         }catch(Exception e){
             e.printStackTrace();
         }
         
         // Inicamos lo que respecta a musica y efectos sonoros.
+        /*
         reproductorMusicaAmbiente = new MediaPlayer(musicaAmbiente);
         reproductorMusicaAmbiente.setCycleCount(MediaPlayer.INDEFINITE);
         //reproductorMusicaAmbiente.play();
-
+        */
         primaryStage.show();
     }
 }

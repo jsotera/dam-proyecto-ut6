@@ -2,9 +2,10 @@ package es.mariaanasanz.proyecto6.base;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+/*
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-
+*/
 public abstract class Entidad extends ImageView
 {
     protected Image spriteIdle;
@@ -12,8 +13,10 @@ public abstract class Entidad extends ImageView
     protected float altoDeLaEscena;
     protected int velocidad, distanciaAlSuelo, actualizacionesParaDesaparecer;
     protected static final double MARGEN_INTERSECCION = 5;
+    /*
     protected MediaPlayer reproductorSonido;
     protected Media sonido;
+    */
     public Entidad(float anchoDeLaEscena, float altoDeLaEscena, int distanciaAlSuelo)
     {
         super();

@@ -1,9 +1,10 @@
 package es.mariaanasanz.proyecto6.base;
 
 import javafx.scene.image.Image;
+/*
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-
+*/
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -30,8 +31,10 @@ public class Gema extends Objeto
     public void inicializarMedios(){
         try {
             spriteIdle = new Image(Files.newInputStream(Path.of(RUTA_SPRITE)));
+            /*
             sonido = new Media(new File(RUTA_SONIDO_GEMA).toURI().toString());
             reproductorSonido = new MediaPlayer(sonido);
+            */
         } catch (Exception e) {
             System.out.println("ALGO NO HA IDO BIEN");
             e.printStackTrace();
